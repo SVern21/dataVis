@@ -1,0 +1,118 @@
+/**
+ * variables.css — Dead Wax Design System
+ * The Roots of Rhythm
+ *
+ * Aesthetic: Concert poster meets data journal.
+ * Warm darks, single acid accent, editorial typography, no rounded corners.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&display=swap');
+
+:root {
+  /* ─── Backgrounds (warm darks — not cold blue-black) ─────── */
+  --bg-base:     #0e0c0a;
+  --bg-surface:  #141210;
+  --bg-elevated: #1c1916;
+  --bg-inset:    #0a0908;
+
+  /* ─── THE Accent — acid chartreuse. One colour. Use sparingly. ── */
+  --acid:        #c8f000;
+  --acid-dim:    rgba(200, 240, 0, 0.08);
+  --acid-mid:    rgba(200, 240, 0, 0.22);
+  --acid-border: rgba(200, 240, 0, 0.35);
+
+  /* ─── Supporting palette ─────────────────────────────────── */
+  --red:         #e5321c;
+  --red-dim:     rgba(229, 50, 28, 0.10);
+  --amber:       #f0a830;
+  --blue-cool:   #6aabf0;
+  --sage:        #82d4be;
+  --rose:        #c47fa0;
+  --cream:       #f0ebe0;
+
+  /* ─── Text ───────────────────────────────────────────────── */
+  --text-primary:   #f0ebe0;
+  --text-secondary: #a09a90;
+  --text-muted:     #5a5550;
+  --text-acid:      var(--acid);
+
+  /* ─── Borders & rules ────────────────────────────────────── */
+  --border:        #252018;
+  --rule:          #322c24;
+  --rule-light:    #3e3830;
+
+  /* ─── Status ─────────────────────────────────────────────── */
+  --success: var(--sage);
+  --danger:  var(--red);
+  --warning: var(--amber);
+
+  /* ─── Typography ─────────────────────────────────────────── */
+  --font-display: 'Bebas Neue', 'Impact', sans-serif;
+  --font-mono:    'DM Mono', 'Courier New', monospace;
+  --font-body:    'Barlow', system-ui, sans-serif;
+
+  --size-xs:   11px;
+  --size-sm:   13px;
+  --size-base: 15px;
+  --size-md:   18px;
+  --size-lg:   24px;
+  --size-xl:   32px;
+  --size-2xl:  52px;
+  --size-3xl:  80px;
+  --size-hero: clamp(5.5rem, 13vw, 11rem);
+
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+
+  --leading-tight:  1.0;
+  --leading-snug:   1.35;
+  --leading-normal: 1.65;
+  --leading-loose:  1.9;
+
+  --tracking-tight:  -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide:   0.07em;
+  --tracking-wider:  0.14em;
+
+  /* ─── Layout ─────────────────────────────────────────────── */
+  --nav-height:    56px;
+  --sidebar-width: 224px;
+
+  /* ─── Spacing (4-base) ────────────────────────────────────── */
+  --sp-1:  4px;
+  --sp-2:  8px;
+  --sp-3:  12px;
+  --sp-4:  16px;
+  --sp-6:  24px;
+  --sp-8:  32px;
+  --sp-12: 48px;
+  --sp-16: 64px;
+  --sp-24: 96px;
+
+  /* ─── Radii — almost none ────────────────────────────────── */
+  --radius-sm: 2px;
+  --radius-md: 2px;
+  --radius-lg: 3px;
+  --radius-xl: 3px;
+  --radius-full: 1px;
+
+  /* ─── Shadows ─────────────────────────────────────────────── */
+  --shadow-sm:   0 1px 4px rgba(0,0,0,0.55);
+  --shadow-md:   0 4px 24px rgba(0,0,0,0.65);
+  --shadow-lg:   0 10px 48px rgba(0,0,0,0.75);
+  --shadow-acid: 0 0 40px rgba(200, 240, 0, 0.12), 0 0 1px rgba(200, 240, 0, 0.5);
+
+  /* ─── Transitions ─────────────────────────────────────────── */
+  --t-fast: 110ms ease;
+  --t-base: 200ms ease;
+  --t-slow: 360ms ease;
+
+  /* ─── Z-index ─────────────────────────────────────────────── */
+  --z-base:    1;
+  --z-sidebar: 100;
+  --z-nav:     200;
+  --z-tooltip: 300;
+}

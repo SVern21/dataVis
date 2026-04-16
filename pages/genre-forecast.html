@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Genre Forecast — The Roots of Rhythm</title>
+  <meta name="description" content="Predictive genre popularity trends through 2030." />
+
+  <link rel="stylesheet" href="../css/variables.css" />
+  <link rel="stylesheet" href="../css/base.css" />
+  <link rel="stylesheet" href="../css/layout.css" />
+  <link rel="stylesheet" href="../css/components.css" />
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+</head>
+<body>
+
+  <nav class="site-nav" role="navigation" aria-label="Main navigation">
+    <a href="../index.html" class="nav-logo">
+      <span class="nav-logo-mark">ROR</span>
+      <span class="nav-logo-divider" aria-hidden="true"></span>
+      <div class="nav-logo-text">
+        <span class="nav-logo-title">Roots of Rhythm</span>
+        <span class="nav-logo-sub">Music × Data</span>
+      </div>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="cultural-flow.html"      class="nav-link">Cultural Flow</a></li>
+      <li><a href="resonance-timeline.html" class="nav-link">Resonance Timeline</a></li>
+      <li><a href="genre-forecast.html"     class="nav-link active" aria-current="page">Genre Forecast</a></li>
+      <li><a href="network-map.html"        class="nav-link">Network Map</a></li>
+    </ul>
+    <button id="sidebar-toggle" class="sidebar-toggle" aria-label="Toggle filters" aria-expanded="false">
+      <svg width="18" height="14" viewBox="0 0 18 14" fill="none">
+        <line x1="0" y1="1" x2="18" y2="1" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="0" y1="7" x2="12" y2="7" stroke="currentColor" stroke-width="1.5"/>
+        <line x1="0" y1="13" x2="7"  y2="13" stroke="currentColor" stroke-width="1.5"/>
+      </svg>
+    </button>
+  </nav>
+
+  <div class="page-shell">
+
+    <aside class="sidebar" id="sidebar" aria-label="Visualisation filters">
+      <div class="sidebar-header">
+        <span class="sidebar-title">Filters</span>
+      </div>
+      <div class="sidebar-body">
+
+        <div class="filter-group">
+          <span class="filter-group-label">History Range</span>
+          <div class="range-group">
+            <input type="range" id="filter-decade-start" min="1986" max="2024" value="2000" step="1" aria-label="Start year" />
+            <input type="range" id="filter-decade-end"   min="1986" max="2024" value="2024" step="1" aria-label="End year" />
+            <span class="range-value-display" id="filter-decade-display">2000 – 2024</span>
+          </div>
+          <div class="range-track-labels"><span>2000</span><span>2024</span></div>
+        </div>
+
+        <div class="filter-group" role="group" aria-labelledby="lbl-audio">
+          <span class="filter-group-label" id="lbl-audio">Audio Feature</span>
+          <label class="filter-item"><input type="checkbox" data-filter-group="audio-feature" value="energy"       checked /> Energy</label>
+          <label class="filter-item"><input type="checkbox" data-filter-group="audio-feature" value="valence"      checked /> Valence</label>
+          <label class="filter-item"><input type="checkbox" data-filter-group="audio-feature" value="tempo"        checked /> Tempo</label>
+          <label class="filter-item"><input type="checkbox" data-filter-group="audio-feature" value="danceability" checked /> Danceability</label>
+        </div>
+
+        <div class="filter-group" role="group" aria-labelledby="lbl-crisis">
+          <span class="filter-group-label" id="lbl-crisis">Crisis Type</span>
+          <label class="filter-item"><input type="checkbox" data-filter-group="crisis-type" value="economic"       checked /> Economic</label>
+          <label class="filter-item"><input type="checkbox" data-filter-group="crisis-type" value="armed_conflict" checked /> Armed Conflict</label>
+          <label class="filter-item"><input type="checkbox" data-filter-group="crisis-type" value="pandemic"       checked /> Pandemic</label>
+        </div>
+
+        <div class="filter-group" role="group" aria-labelledby="lbl-region">
+          <span class="filter-group-label" id="lbl-region">Region</span>
+          <label class="filter-item"><input type="checkbox" data-filter-group="region" value="europe"   checked /> Europe</label>
+          <label class="filter-item"><input type="checkbox" data-filter-group="region" value="americas" checked /> Americas</label>
+          <label class="filter-item"><input type="checkbox" data-filter-group="region" value="africa"   checked /> Africa</label>
+          <label class="filter-item"><input type="checkbox" data-filter-group="region" value="asia"     checked /> Asia</label>
+          <label class="filter-item"><input type="checkbox" data-filter-group="region" value="oceania"  checked /> Oceania</label>
+        </div>
+
+        <!-- Forecast method note — mono, sparse -->
+        <div class="filter-group" style="border-bottom:none;">
+          <span class="filter-group-label">Method</span>
+          <p style="font-family:var(--font-mono);font-size:10px;color:var(--text-muted);line-height:1.6;letter-spacing:0.02em;">
+            Linear regression on history.<br>
+            Dashed = projection.<br>
+            Band = ±1.5× RMSE.
+          </p>
+        </div>
+
+        <div class="active-pills" id="active-pills" aria-label="Active filters" aria-live="polite"></div>
+      </div>
+      <div class="sidebar-footer">
+        <button class="btn-reset-filters" id="btn-reset-filters">Reset Filters</button>
+      </div>
+    </aside>
+
+    <div id="sidebar-overlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99;" aria-hidden="true"></div>
+
+    <main class="main-content">
+
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="../index.html" class="breadcrumb-link">Home</a>
+        <span class="breadcrumb-sep" aria-hidden="true">/</span>
+        <span class="breadcrumb-current" aria-current="page">Genre Forecast</span>
+      </nav>
+
+      <header class="page-header">
+        <h1 class="page-title">Genre <span class="acid">Forecast</span></h1>
+        <p class="page-subtitle">Genre popularity 2000–2030. Click a legend item to toggle a genre.</p>
+      </header>
+
+      <div class="viz-wrapper">
+        <div id="viz-container" role="img" aria-label="Forecast chart loading">
+          <div class="empty-state">
+            <div class="skeleton skeleton-block" style="height:480px;"></div>
+          </div>
+        </div>
+        <span class="viz-sample-badge">Sample Data</span>
+      </div>
+
+
+    </main>
+  </div>
+
+  <script type="module" src="../js/main.js"></script>
+  <script type="module" src="../js/pages/genre-forecast.js"></script>
+</body>
+</html>

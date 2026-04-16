@@ -1,0 +1,853 @@
+/**
+ * components.css — Dead Wax Design System
+ * Buttons, cards, stats, tooltips, insight panels.
+ * Sharp corners. Acid accent. Editorial confidence.
+ */
+
+/* ══════════════════════════════════════════════════════════════
+   BUTTONS — sharp, inverted hover, DM Mono
+══════════════════════════════════════════════════════════════ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-6);
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  border-radius: 0;
+  transition:
+    background var(--t-fast),
+    color var(--t-fast),
+    border-color var(--t-fast),
+    transform var(--t-fast);
+  white-space: nowrap;
+  user-select: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn:active { transform: scale(0.97); }
+
+/* Primary — acid fill, black text; hover: invert */
+.btn-primary {
+  background: var(--acid);
+  color: #0a0908;
+  border: 1px solid var(--acid);
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: var(--acid);
+}
+
+/* Outline — cream border; hover: fill cream, text inverts */
+.btn-outline {
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid var(--rule-light);
+}
+
+.btn-outline:hover {
+  border-color: var(--acid-border);
+  color: var(--acid);
+}
+
+/* Ghost — underline only */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  padding: var(--sp-2) var(--sp-3);
+}
+
+.btn-ghost:hover {
+  color: var(--text-primary);
+  border-color: var(--rule-light);
+}
+
+/* Sizes */
+.btn-sm {
+  padding: var(--sp-1) var(--sp-3);
+  font-size: 10px;
+}
+
+.btn-lg {
+  padding: var(--sp-4) var(--sp-8);
+  font-size: var(--size-sm);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HERO — concert poster layout
+══════════════════════════════════════════════════════════════ */
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  padding: var(--sp-16) var(--sp-8) var(--sp-12);
+}
+
+#waveform-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--sp-8);
+  align-items: center;
+  max-width: 1300px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero-left {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-6);
+}
+
+.hero-label {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+}
+
+.hero-label::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 1px;
+  background: var(--acid);
+}
+
+/* The title — stacked concert poster typography */
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  line-height: var(--leading-tight);
+}
+
+.hero-title-article {
+  /* "THE" — small italic Barlow, contrasts the massive Bebas */
+  font-family: var(--font-body);
+  font-weight: var(--weight-light);
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.5vw, 2.2rem);
+  color: var(--text-muted);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+.hero-title-main {
+  /* "ROOTS" — Bebas, huge, acid yellow */
+  font-family: var(--font-display);
+  font-size: var(--size-hero);
+  color: var(--acid);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+}
+
+.hero-title-of {
+  /* "OF" — small italic again */
+  font-family: var(--font-body);
+  font-weight: var(--weight-light);
+  font-style: italic;
+  font-size: clamp(1rem, 2vw, 1.8rem);
+  color: var(--text-muted);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  line-height: 1.8;
+}
+
+.hero-title-rhythm {
+  /* "RHYTHM" — Bebas, same size, cream */
+  font-family: var(--font-display);
+  font-size: var(--size-hero);
+  color: var(--cream);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+}
+
+.hero-desc {
+  font-family: var(--font-body);
+  font-size: var(--size-md);
+  font-weight: var(--weight-light);
+  line-height: var(--leading-snug);
+  color: var(--text-secondary);
+  max-width: 480px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--sp-4);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* ── Right column: vinyl record ──────────────────────────── */
+.hero-right {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.vinyl-wrapper {
+  width: 320px;
+  height: 320px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vinyl-disc {
+  width: 100%;
+  height: 100%;
+  animation: vinyl-spin 14s linear infinite;
+  filter: drop-shadow(0 0 40px rgba(0,0,0,0.8));
+}
+
+@keyframes vinyl-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+.vinyl-year-badge {
+  position: absolute;
+  bottom: -16px;
+  right: 0;
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--text-muted);
+  text-align: right;
+  letter-spacing: 0.08em;
+}
+
+/* Scroll hint */
+.hero-scroll-hint {
+  position: absolute;
+  bottom: var(--sp-8);
+  left: var(--sp-8);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-muted);
+  animation: fade-bob 3s ease-in-out infinite;
+  z-index: 1;
+}
+
+@keyframes fade-bob {
+  0%, 100% { opacity: 0.5; transform: translateY(0); }
+  50%       { opacity: 1;   transform: translateY(4px); }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   STATS STRIP — newspaper data row
+══════════════════════════════════════════════════════════════ */
+
+.stats-strip {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-surface);
+}
+
+.stats-strip-inner {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  align-items: stretch;
+  padding: 0 var(--sp-8);
+  overflow-x: auto;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--sp-6) var(--sp-8);
+  flex: 1;
+  min-width: 160px;
+  position: relative;
+}
+
+.stat-item + .stat-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 25%;
+  bottom: 25%;
+  width: 1px;
+  background: var(--border);
+}
+
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: var(--size-xl);
+  font-weight: var(--weight-medium);
+  color: var(--acid);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--text-muted);
+  margin-top: var(--sp-1);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   HOMEPAGE SECTION WRAPPER
+══════════════════════════════════════════════════════════════ */
+
+.homepage-section {
+  padding: var(--sp-16) var(--sp-8);
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.section-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: flex-end;
+  gap: var(--sp-8);
+  margin-bottom: var(--sp-8);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.section-kicker {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--acid);
+  margin-bottom: var(--sp-2);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+
+.section-kicker::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 1px;
+  background: var(--acid);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: var(--size-2xl);
+  letter-spacing: 0.01em;
+  color: var(--text-primary);
+  line-height: var(--leading-tight);
+}
+
+.section-count {
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FEATURE CARDS — setlist entries with track numbers
+══════════════════════════════════════════════════════════════ */
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+}
+
+.feature-card {
+  background: var(--bg-surface);
+  padding: var(--sp-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+  position: relative;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--t-base), transform var(--t-base);
+  border-left: 3px solid transparent;
+  /* Left border becomes acid on hover */
+}
+
+.feature-card:hover {
+  background: var(--bg-elevated);
+  border-left-color: var(--acid);
+  transform: translate(-1px, -2px) rotate(-0.2deg);
+  z-index: 1;
+}
+
+/* Track number watermark */
+.feature-card-num {
+  position: absolute;
+  top: var(--sp-4);
+  right: var(--sp-6);
+  font-family: var(--font-mono);
+  font-size: 5.5rem;
+  font-weight: var(--weight-light);
+  color: rgba(200, 240, 0, 0.04);
+  line-height: 1;
+  pointer-events: none;
+  user-select: none;
+  letter-spacing: -0.04em;
+  transition: color var(--t-base);
+}
+
+.feature-card:hover .feature-card-num {
+  color: rgba(200, 240, 0, 0.07);
+}
+
+.feature-card-kicker {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  color: var(--text-muted);
+  transition: color var(--t-fast);
+}
+
+.feature-card:hover .feature-card-kicker {
+  color: var(--acid);
+}
+
+.feature-card-title {
+  font-family: var(--font-display);
+  font-size: var(--size-2xl);
+  color: var(--text-primary);
+  line-height: var(--leading-tight);
+  letter-spacing: 0.01em;
+  transition: color var(--t-fast);
+}
+
+.feature-card:hover .feature-card-title {
+  color: var(--cream);
+}
+
+.feature-card-desc {
+  font-family: var(--font-body);
+  font-size: var(--size-sm);
+  font-weight: var(--weight-light);
+  color: var(--text-secondary);
+  line-height: var(--leading-normal);
+  flex: 1;
+}
+
+.feature-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--border);
+  margin-top: auto;
+}
+
+.feature-card-tag {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--text-muted);
+}
+
+.feature-card-arrow {
+  font-family: var(--font-mono);
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+  transition: color var(--t-fast), transform var(--t-fast);
+  display: inline-block;
+}
+
+.feature-card:hover .feature-card-arrow {
+  color: var(--acid);
+  transform: translateX(3px);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   INSIGHT CARDS — newspaper data points
+══════════════════════════════════════════════════════════════ */
+
+.insight-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--card-accent, var(--acid));
+  padding: var(--sp-4) var(--sp-6);
+  min-width: 200px;
+  max-width: 260px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  border-radius: 0;
+  transition: border-color var(--t-fast), transform var(--t-fast);
+}
+
+.insight-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.insight-card-title {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: var(--weight-medium);
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+}
+
+.insight-card-value {
+  font-family: var(--font-mono);
+  font-size: var(--size-2xl);
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.insight-card-trend {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  font-weight: var(--weight-medium);
+}
+
+.trend-up   { color: var(--sage); }
+.trend-down { color: var(--red); }
+
+.insight-card-desc {
+  font-family: var(--font-body);
+  font-size: var(--size-xs);
+  color: var(--text-muted);
+  line-height: var(--leading-snug);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   FILTER PILL — sharp tag
+══════════════════════════════════════════════════════════════ */
+
+.filter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: 2px var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: var(--weight-medium);
+  color: var(--acid);
+  background: var(--acid-dim);
+  border: 1px solid var(--acid-border);
+  border-radius: 0;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.filter-pill-remove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px;
+  height: 12px;
+  cursor: pointer;
+  color: var(--acid);
+  opacity: 0.6;
+  transition: opacity var(--t-fast);
+  background: none;
+  border: none;
+  padding: 0;
+}
+
+.filter-pill-remove:hover { opacity: 1; }
+
+/* ══════════════════════════════════════════════════════════════
+   LOADING SKELETON
+══════════════════════════════════════════════════════════════ */
+
+.skeleton {
+  background: var(--bg-elevated);
+  border-radius: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(200, 240, 0, 0.03) 50%,
+    transparent 100%
+  );
+  animation: skel-scan 1.8s ease-in-out infinite;
+  background-size: 200% 100%;
+}
+
+@keyframes skel-scan {
+  0%   { background-position: -200% center; }
+  100% { background-position:  200% center; }
+}
+
+.skeleton-block { height: 120px; width: 100%; }
+
+/* ══════════════════════════════════════════════════════════════
+   TOOLTIP — sharp, DM Mono values
+══════════════════════════════════════════════════════════════ */
+
+.d3-tooltip {
+  position: fixed;
+  z-index: var(--z-tooltip);
+  background: var(--bg-elevated);
+  border: 1px solid var(--rule-light);
+  border-top: 2px solid var(--acid);
+  padding: var(--sp-3) var(--sp-4);
+  font-size: var(--size-sm);
+  color: var(--text-primary);
+  pointer-events: none;
+  box-shadow: var(--shadow-md);
+  max-width: 220px;
+  opacity: 0;
+  transition: opacity var(--t-fast);
+  border-radius: 0;
+}
+
+.d3-tooltip.visible { opacity: 1; }
+
+.tooltip-title {
+  font-family: var(--font-body);
+  font-weight: var(--weight-semibold);
+  font-size: var(--size-sm);
+  color: var(--text-primary);
+  margin-bottom: var(--sp-1);
+}
+
+.tooltip-divider {
+  height: 1px;
+  background: var(--border);
+  margin: var(--sp-2) 0;
+}
+
+.tooltip-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--sp-4);
+  font-family: var(--font-mono);
+  font-size: var(--size-xs);
+  color: var(--text-secondary);
+  line-height: var(--leading-snug);
+}
+
+.tooltip-value {
+  font-weight: var(--weight-medium);
+  color: var(--text-primary);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   EMPTY STATE
+══════════════════════════════════════════════════════════════ */
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-16) var(--sp-8);
+  gap: var(--sp-4);
+  text-align: center;
+  min-height: 300px;
+}
+
+.empty-state-icon {
+  width: 48px;
+  height: 48px;
+  color: var(--text-muted);
+  opacity: 0.4;
+}
+
+.empty-state-title {
+  font-family: var(--font-display);
+  font-size: var(--size-xl);
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+.empty-state-desc {
+  font-family: var(--font-body);
+  font-size: var(--size-sm);
+  color: var(--text-muted);
+  max-width: 300px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   LEGEND — DM Mono labels
+══════════════════════════════════════════════════════════════ */
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-2) var(--sp-6);
+  padding: var(--sp-3) var(--sp-4);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color var(--t-fast);
+  user-select: none;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.legend-item:hover { color: var(--text-primary); }
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 0;  /* square dots */
+  flex-shrink: 0;
+}
+
+.legend-line {
+  width: 18px;
+  height: 2px;
+  flex-shrink: 0;
+}
+
+.legend-item.muted { opacity: 0.3; }
+
+/* ══════════════════════════════════════════════════════════════
+   D3 CHART GLOBAL STYLES (SVG via CSS)
+══════════════════════════════════════════════════════════════ */
+
+.chart-axis line,
+.chart-axis path {
+  stroke: var(--border);
+}
+
+.chart-axis text {
+  fill: var(--text-muted);
+  font-family: var(--font-mono) !important;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+}
+
+.chart-axis-label {
+  fill: var(--text-secondary);
+  font-family: var(--font-mono) !important;
+  font-size: 11px;
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.chart-grid line {
+  stroke: var(--border);
+  stroke-dasharray: 2 5;
+  opacity: 0.8;
+}
+
+/* Section heading (viz pages) */
+.section-heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-1);
+  margin-bottom: var(--sp-6);
+}
+
+.section-heading-title {
+  font-family: var(--font-display);
+  font-size: var(--size-xl);
+  color: var(--text-primary);
+  letter-spacing: 0.01em;
+}
+
+.section-heading-sub {
+  font-family: var(--font-body);
+  font-size: var(--size-sm);
+  color: var(--text-secondary);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   RESPONSIVE
+══════════════════════════════════════════════════════════════ */
+
+@media (max-width: 1024px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-right {
+    display: none;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-strip-inner {
+    padding: 0 var(--sp-4);
+  }
+
+  .stat-item {
+    padding: var(--sp-4);
+    min-width: 120px;
+  }
+
+  .hero {
+    padding: var(--sp-8) var(--sp-4) var(--sp-8);
+  }
+
+  .homepage-section {
+    padding: var(--sp-8) var(--sp-4);
+  }
+}
