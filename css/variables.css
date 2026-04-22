@@ -103,7 +103,7 @@
   --shadow-sm:   0 1px 4px rgba(0,0,0,0.55);
   --shadow-md:   0 4px 24px rgba(0,0,0,0.65);
   --shadow-lg:   0 10px 48px rgba(0,0,0,0.75);
-  --shadow-acid: 0 0 40px rgba(200, 240, 0, 0.12), 0 0 1px rgba(200, 240, 0, 0.5);
+  --shadow-acid: 0 0 40px var(--acid-dim), 0 0 1px var(--acid-border);
 
   /* ─── Transitions ─────────────────────────────────────────── */
   --t-fast: 110ms ease;
@@ -125,11 +125,11 @@
   --bg-elevated: #dfdace;
   --bg-inset:    #e0dbcc;
 
-  /* The accent remains acid chartreuse, but we need more contrast for light mode */
-  --acid:        #b8d800; /* Slightly darker acid for better legibility on cream */
-  --acid-dim:    rgba(184, 216, 0, 0.12);
-  --acid-mid:    rgba(184, 216, 0, 0.3);
-  --acid-border: rgba(184, 216, 0, 0.45);
+  /* The accent is changed from acid chartreuse to a darker moss green in light mode for better readability */
+  --acid:        #465c00; 
+  --acid-dim:    rgba(70, 92, 0, 0.08);
+  --acid-mid:    rgba(70, 92, 0, 0.22);
+  --acid-border: rgba(70, 92, 0, 0.35);
 
   /* Text — inverse of dark mode */
   --text-primary:   #1c1916;
@@ -145,7 +145,4 @@
   --shadow-sm:   0 1px 4px rgba(0,0,0,0.1);
   --shadow-md:   0 4px 12px rgba(0,0,0,0.12);
   --shadow-lg:   0 10px 24px rgba(0,0,0,0.15);
-  
-  /* Selection */
-  --selection-bg: rgba(184, 216, 0, 0.3);
 }
